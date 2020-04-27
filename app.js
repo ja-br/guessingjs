@@ -3,7 +3,7 @@ let min = 1,
     winCondition = 2,
     guessesLeft = 3
 
-const game = document.querySelector('#game'),
+const gameWrapper = document.querySelector('#game'),
     minNum = document.querySelector('.min-num'),
     maxNum = document.querySelector('.max-num'),
     guessBtn = document.querySelector('#guess-btn'),
@@ -12,6 +12,12 @@ const game = document.querySelector('#game'),
 
 minNum.textContent = min
 maxNum.textContent = max
+
+gameWrapper.addEventListener('mousedown', (e)=>{
+    if(e.target.className === 'play-again'){
+        window.location.reload()
+    }
+})
 
 guessBtn.addEventListener('click', ()=>{
     let guess = parseInt(guessInput.value)
@@ -39,7 +45,11 @@ const gameOver = (won, msg) =>{
 
     guessInput.disabled = true;
     guessInput.style.borderColor = color
+    message.style.color = color;
     setMessage(msg)
+
+    guessBtn.value = 'Play Again?'
+    guessBtn.classList.add('play-again')
 }
 
 const setMessage = (msg, color) =>{
