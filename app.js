@@ -18,6 +18,12 @@ guessBtn.addEventListener('click', ()=>{
     if(isNaN(guess) || guess < min || guess > max){
         setMessage(`Please enter a number between ${min} and ${max}`, `red`)
     }
+
+    if(guess === winCondition){
+        guessInput.disabled = true;
+        guessInput.style.borderColor = 'green'
+        setMessage(`${winCondition} is correct! Congrations you done it!`, 'green')
+    }
 })
 
 const setMessage = (msg, color) =>{
