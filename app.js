@@ -23,9 +23,7 @@ guessBtn.addEventListener('click', ()=>{
     let guess = parseInt(guessInput.value)
     if(isNaN(guess) || guess < min || guess > max){
         setMessage(`Please enter a number between ${min} and ${max}`, `red`)
-    }
-
-    if(guess === winCondition){
+    } else if (guess === winCondition){
        gameOver(true, `${winCondition} is correct! Congrations you done it!`)
     } else {
         guessesLeft -= 1
