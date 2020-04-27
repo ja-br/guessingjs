@@ -23,6 +23,18 @@ guessBtn.addEventListener('click', ()=>{
         guessInput.disabled = true;
         guessInput.style.borderColor = 'green'
         setMessage(`${winCondition} is correct! Congrations you done it!`, 'green')
+    } else {
+        guessesLeft -= 1
+
+        if(guessesLeft === 0){
+            guessInput.disabled = true;
+            guessInput.style.borderColor = 'green'
+
+            setMessage(`Wrong! You get NOTHING! You LOSE! GOOD DAY, SIR`, 'red')
+        } else {
+            guessInput.value = ''
+            setMessage(`NOPE! Try again. You have ${guessesLeft} guesses remaining`, 'red')
+        }
     }
 })
 
