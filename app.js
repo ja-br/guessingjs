@@ -20,23 +20,27 @@ guessBtn.addEventListener('click', ()=>{
     }
 
     if(guess === winCondition){
-        guessInput.disabled = true;
-        guessInput.style.borderColor = 'green'
-        setMessage(`${winCondition} is correct! Congrations you done it!`, 'green')
+       gameOver(true, `${winCondition} is correct! Congrations you done it!`)
     } else {
         guessesLeft -= 1
 
         if(guessesLeft === 0){
-            guessInput.disabled = true;
-            guessInput.style.borderColor = 'green'
-
-            setMessage(`Wrong! You get NOTHING! You LOSE! GOOD DAY, SIR`, 'red')
+           gameOver(false, `Wrong! You get NOTHING! You LOSE! GOOD DAY, SIR`)
         } else {
             guessInput.value = ''
             setMessage(`NOPE! Try again. You have ${guessesLeft} guesses remaining`, 'red')
         }
     }
 })
+
+const gameOver = (won, msg) =>{
+    let color
+    won === true ? color = 'green' : color = 'red'
+
+    guessInput.disabled = true;
+    guessInput.style.borderColor = color
+    setMessage(msg)
+}
 
 const setMessage = (msg, color) =>{
     message.style.color = color
